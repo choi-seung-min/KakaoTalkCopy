@@ -1,12 +1,12 @@
 package com.example.kakaotalkcopy;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Switch;
-import android.widget.TextView;
+
 
 public class PasswordActivity extends AppCompatActivity {
 
@@ -26,6 +26,8 @@ public class PasswordActivity extends AppCompatActivity {
         dots[1] = findViewById(R.id.img2);
         dots[2] = findViewById(R.id.img3);
         dots[3] = findViewById(R.id.img4);
+
+
     }
 
     public void changeimg(int num){
@@ -42,10 +44,14 @@ public class PasswordActivity extends AppCompatActivity {
 
     public void num(View v){
         if(count<4){
-            password.append(Integer.parseInt(((Button)v).getText().toString()));
+            int add = Integer.parseInt(((Button)v).getText().toString());
+            password.append(add);
             count++;
         }
         changeimg(count);
+        if(count == 4) {
+            pass();
+        }
     }
 
     public void erase(View v){
@@ -54,5 +60,12 @@ public class PasswordActivity extends AppCompatActivity {
         count--;
         }
         changeimg(count);
+    }
+
+    public void pass(){
+        if(password.toString().equals("1234")){
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+        }
     }
 }
