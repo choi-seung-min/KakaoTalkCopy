@@ -24,4 +24,14 @@
         app:menu="@menu/menu_bottom"
         tools:ignore="MissingConstraints" />
 
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_navigation_view"
+        android:layout_alignParentTop="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    </android.support.v4.view.ViewPager>
+
 </android.support.constraint.ConstraintLayout>

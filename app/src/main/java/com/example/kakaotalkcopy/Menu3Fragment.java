@@ -9,6 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class Menu3Fragment extends Fragment {
+    public Menu3Fragment(){
+
+    }
+
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+    }
 
     @Nullable
     @Override

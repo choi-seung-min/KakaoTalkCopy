@@ -10,6 +10,14 @@ import android.view.ViewGroup;
 
 public class Menu4Fragment extends Fragment {
 
+    public Menu4Fragment(){
+
+    }
+
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){

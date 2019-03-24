@@ -15,6 +15,14 @@ import java.util.List;
 
 public class Menu1Fragment extends Fragment {
 
+    public Menu1Fragment(){
+
+    }
+
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+    }
+
     private RecyclerAdapter adapter;
 
     @Nullable
