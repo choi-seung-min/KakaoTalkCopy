@@ -6,7 +6,9 @@
     android:orientation="horizontal"
     android:padding="8dp"
     android:gravity="center_vertical"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    android:id="@+id/profileBar"
+    android:onClick="Bar">
 
     <ImageView
         android:id="@+id/imageView"

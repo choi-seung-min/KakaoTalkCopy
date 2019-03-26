@@ -23,7 +23,7 @@ public class Menu1Fragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    private RecyclerAdapter adapter;
+    private Menu1Adapter adapter;
 
     @Nullable
     @Override
@@ -40,7 +40,7 @@ public class Menu1Fragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        adapter = new RecyclerAdapter();
+        adapter = new Menu1Adapter();
         recyclerView.setAdapter(adapter);
     }
 
@@ -93,6 +93,7 @@ public class Menu1Fragment extends Fragment {
 
             // 각 값이 들어간 data를 adapter에 추가합니다.
             adapter.addItem(data);
+            adapter.addContext(getActivity());
         }
 
         // adapter의 값이 변경되었다는 것을 알려줍니다.

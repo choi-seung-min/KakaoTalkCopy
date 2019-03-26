@@ -1,20 +1,23 @@
 package com.example.kakaotalkcopy;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder> {
+public class Menu1Adapter extends RecyclerView.Adapter<Menu1Adapter.ItemViewHolder> {
 
     // adapter에 들어갈 list 입니다.
     private ArrayList<Data> listData = new ArrayList<>();
+    private Context context;
 
     @NonNull
     @Override
@@ -26,8 +29,22 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ItemViewHolder holder, final int position) {
         // Item을 하나, 하나 보여주는(bind 되는) 함수입니다.
+
+        final String name = listData.get(position).getTitle();
+
+        holder.textView1.setText(name);
+
+        holder.Bar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, Profile.class);
+                intent.putExtra("name", name);
+                intent.putExtra("intro", listData.get(position).getContent());
+                context.startActivity(intent);
+            }
+        });
         holder.onBind(listData.get(position));
     }
 
@@ -42,6 +59,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
         listData.add(data);
     }
 
+    void addContext(Context context) {
+        this.context = context;
+    }
+
 
     // RecyclerView의 핵심인 ViewHolder 입니다.
     // 여기서 subView를 setting 해줍니다.
@@ -50,6 +71,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
         private TextView textView1;
         private TextView textView2;
         private ImageView imageView;
+        private LinearLayout Bar;
 
         ItemViewHolder(View itemView) {
             super(itemView);
@@ -57,6 +79,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
             textView1 = itemView.findViewById(R.id.textView1);
             textView2 = itemView.findViewById(R.id.textView2);
             imageView = itemView.findViewById(R.id.imageView);
+            Bar = itemView.findViewById(R.id.profileBar);
         }
 
         void onBind(Data data) {
