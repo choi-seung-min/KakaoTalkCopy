@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class Menu1Adapter extends RecyclerView.Adapter<Menu1Adapter.ItemViewHolder> {
+public class Menu2Adapter extends RecyclerView.Adapter<Menu2Adapter.ItemViewHolder> {
 
     // adapter에 들어갈 list 입니다.
     private ArrayList<Data> listData = new ArrayList<>();
