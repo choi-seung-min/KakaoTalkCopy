@@ -39,7 +39,7 @@ public class Menu2Adapter extends RecyclerView.Adapter<Menu2Adapter.ItemViewHold
         holder.Bar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, Profile.class);
+                Intent intent = new Intent(context, Chatting.class);
                 intent.putExtra("name", name);
                 intent.putExtra("intro", listData.get(position).getContent());
                 context.startActivity(intent);
