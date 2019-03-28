@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -21,15 +22,16 @@ public class Chatting extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chatting);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
         actionBar.setDisplayHomeAsUpEnabled(true);
+        setSupportActionBar(toolbar);
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerLayout = findViewById(R.id.drawer_layout);
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
+        NavigationView navigationView = findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -61,7 +63,9 @@ public class Chatting extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.drawer_menu, menu);
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.toolbar, menu);
+
         return true;
     }
 
@@ -70,16 +74,16 @@ public class Chatting extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        switch (id) {
-            case android.R.id.home:
-                mDrawerLayout.openDrawer(GravityCompat.START);
+        switch (item.getItemId()) {
+            case android.R.id.home: { // 뒤로가기 버튼 눌렀을 때
+                finish();
                 return true;
-            case R.id.action_settings:
-                return true;
+            }
+            case R.id.toolbar_next_button: { // 오른쪽 상단 버튼 눌렀을 때
+                Toast.makeText(this, "click", Toast.LENGTH_SHORT).show();
+            }
         }
-
         return super.onOptionsItemSelected(item);
     }
 }
