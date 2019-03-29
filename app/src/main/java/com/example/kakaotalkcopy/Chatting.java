@@ -25,7 +25,6 @@ public class Chatting extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
         actionBar.setDisplayHomeAsUpEnabled(true);
         setSupportActionBar(toolbar);
 
@@ -81,7 +80,7 @@ public class Chatting extends AppCompatActivity {
                 return true;
             }
             case R.id.toolbar_next_button: { // 오른쪽 상단 버튼 눌렀을 때
-                Toast.makeText(this, "click", Toast.LENGTH_SHORT).show();
+                mDrawerLayout.openDrawer(GravityCompat.END);
             }
         }
         return super.onOptionsItemSelected(item);
