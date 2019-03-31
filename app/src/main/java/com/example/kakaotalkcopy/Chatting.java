@@ -1,8 +1,11 @@
 package com.example.kakaotalkcopy;
 
+import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -11,16 +14,43 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.AbsListView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 
 public class Chatting extends AppCompatActivity {
+    private ChatArrayAdapter chatArrayAdapter;
     private DrawerLayout mDrawerLayout;
+    private ListView listView;
+    private ChattingFragment chattingFragment = new ChattingFragment();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.chatting);
+        setContentView(R.layout.activity_chatting);
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        fragmentTransaction.add(R.id.input, chattingFragment);
+        fragmentTransaction.commit();
+
+        listView = findViewById(R.id.listView1);
+        chatArrayAdapter = new ChatArrayAdapter(this, R.layout.activity_chat_singlemessage);
+        listView.setAdapter(chatArrayAdapter);
+
+        listView.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
+        listView.setAdapter(chatArrayAdapter);
+
+        chatArrayAdapter.registerDataSetObserver(new DataSetObserver() {
+            @Override
+            public void onChanged() {
+                super.onChanged();
+                listView.setSelection(chatArrayAdapter.getCount() - 1);
+            }
+        });
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -80,7 +110,8 @@ public class Chatting extends AppCompatActivity {
                 return true;
             }
             case R.id.toolbar_next_button: { // 오른쪽 상단 버튼 눌렀을 때
-                mDrawerLayout.openDrawer(GravityCompat.END);
+                mDrawerLayout.openDrawer(GravityCompat.END
+                );
             }
         }
         return super.onOptionsItemSelected(item);
