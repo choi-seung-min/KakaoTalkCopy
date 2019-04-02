@@ -2,6 +2,7 @@ package com.example.kakaotalkcopy;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +12,6 @@ import android.widget.EditText;
 
 public class ChattingFragment extends Fragment {
 
-    private ChatArrayAdapter chatArrayAdapter;
     private EditText chatText;
     private Button buttonSend;
 
@@ -24,12 +24,14 @@ public class ChattingFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+    }
 
-        buttonSend = getActivity().findViewById(R.id.buttonSend);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+        View rootView = inflater.inflate(R.layout.fragment_chatting, container, false);
 
-        chatArrayAdapter = new ChatArrayAdapter(this.getActivity(), R.layout.activity_chat_singlemessage);
+        buttonSend = rootView.findViewById(R.id.buttonSend);
 
-        chatText = getActivity().findViewById(R.id.chatText);
+        chatText = rootView.findViewById(R.id.chatText);
         chatText.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
@@ -44,14 +46,17 @@ public class ChattingFragment extends Fragment {
                 sendChatMessage();
             }
         });
-    }
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return rootView;
     }
 
     private boolean sendChatMessage(){
-        chatArrayAdapter.add(new ChatMessage(side, chatText.getText().toString()));
+        String textData = chatText.getText().toString();
+        ChatMessage cm = new ChatMessage(side, textData);
+        Log.d("DEBUGGINGscm", textData);
+
+        Chatting.adapter.add(cm);
+        Chatting.adapter.notifyDataSetChanged();
         chatText.setText("");
         side = !side;
         return true;
