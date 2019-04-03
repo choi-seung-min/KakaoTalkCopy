@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 public class Chatting extends AppCompatActivity {
     public static RecyclerAdapter adapter;
+    private RecyclerView recyclerView;
     private DrawerLayout mDrawerLayout;
     private ChattingFragment chattingFragment = new ChattingFragment();
 
@@ -37,6 +38,15 @@ public class Chatting extends AppCompatActivity {
         fragmentTransaction.commit();
 
         init();
+
+        recyclerView = this.findViewById(R.id.RecyclerView1);
+        adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onChanged() {
+                super.onChanged();
+                recyclerView.getLayoutManager().scrollToPosition(adapter.getItemCount()-1);
+            }
+        });
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
