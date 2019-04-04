@@ -28,12 +28,31 @@
                 android:layout_height="0dp"
                 android:layout_weight="9.2"/>
 
+            <!--<LinearLayout-->
+                <!--android:id="@+id/input"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:layout_weight="0.8"-->
+                <!--android:orientation="horizontal" />-->
             <LinearLayout
-                android:id="@+id/input"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.8"
-                android:orientation="horizontal" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:ems="10"
+                    android:id="@+id/chatText1"
+                    android:layout_weight="8"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Send"
+                    android:id="@+id/buttonSend1"
+                    android:layout_weight="2"/>
+            </LinearLayout>
 
         </LinearLayout>
 
