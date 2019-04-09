@@ -1,6 +1,7 @@
 package com.example.kakaotalkcopy;
 
 import android.content.Context;
+import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -12,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -150,7 +152,10 @@ public class Chatting extends AppCompatActivity {
         ChatMessage cm = new ChatMessage(side, textData);
 
         Chatting.adapter.add(cm);
-        Chatting.adapter.notifyItemInserted(adapter.getItemCount());
+        Chatting.adapter.notifyItemInserted(adapter.getItemCount()-1);
+        Log.d("DEBUGLOG", String.valueOf(adapter.getItemCount()));
+        Log.d("DEBUGLOG", textData);
+        Log.d("DEBUGLOG", String.valueOf(side));
         chatText.setText("");
         side = !side;
 
