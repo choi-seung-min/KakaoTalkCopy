@@ -34,10 +34,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
     public void onBindViewHolder(@NonNull RecyclerAdapter.ItemViewHolder itemViewHolder, int i) {
         itemViewHolder.onBind(arrayList.get(i));
         ChatMessage chatMessageobj = getItem(i);
-        Log.d("DEBUGLOG", String.valueOf(chatMessageobj.left) + chatMessageobj.message);
         itemViewHolder.chat.setBackgroundResource(chatMessageobj.left ? R.drawable.orange_normal : R.drawable.blue_normal);
         singleMessageContainer.setGravity(chatMessageobj.left ? Gravity.START : Gravity.END);
-        Log.d("DEBUGLOG", String.valueOf(count));
         count++;
     }
 
