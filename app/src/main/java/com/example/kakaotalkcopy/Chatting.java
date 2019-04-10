@@ -1,8 +1,8 @@
 package com.example.kakaotalkcopy;
 
 import android.content.Context;
-import android.database.DataSetObserver;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,16 +27,13 @@ import android.widget.Toast;
 
 
 public class Chatting extends AppCompatActivity {
-    public static RecyclerAdapter adapter;
+    public static ChatRecyclerAdapter adapter;
     private RecyclerView recyclerView;
     private DrawerLayout mDrawerLayout;
     private Toolbar toolbar;
 
     private EditText chatText;
     private Button buttonSend;
-
-    private boolean side = false;
-
 
 
     @Override
@@ -91,13 +89,14 @@ public class Chatting extends AppCompatActivity {
         });
 
         recyclerView = this.findViewById(R.id.RecyclerView1);
-        adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
-            @Override
-            public void onChanged() {
-                super.onChanged();
-                recyclerView.getLayoutManager().scrollToPosition(adapter.getItemCount()-1);
-            }
-        });
+        recyclerView.setHasFixedSize(true);
+//        adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+//            @Override
+//            public void onChanged() {
+//                super.onChanged();
+//                recyclerView.getLayoutManager().scrollToPosition(adapter.getItemCount()-1);
+//            }
+//        });
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -143,21 +142,18 @@ public class Chatting extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        adapter = new RecyclerAdapter();
+        adapter = new ChatRecyclerAdapter();
         recyclerView.setAdapter(adapter);
     }
 
     private boolean sendChatMessage(){
         String textData = chatText.getText().toString();
-        ChatMessage cm = new ChatMessage(side, textData);
+        ChatMessage cm = new ChatMessage(textData);
 
         Chatting.adapter.add(cm);
         Chatting.adapter.notifyItemInserted(adapter.getItemCount()-1);
-        Log.d("DEBUGLOG", String.valueOf(adapter.getItemCount()));
-        Log.d("DEBUGLOG", textData);
-        Log.d("DEBUGLOG", String.valueOf(side));
+        recyclerView.getLayoutManager().scrollToPosition(adapter.getItemCount()-1);
         chatText.setText("");
-        side = !side;
 
         return true;
     }

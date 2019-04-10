@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     public ArrayList<ChatMessage> arrayList = new ArrayList<>();
     private LinearLayout singleMessageContainer_R;
     private LinearLayout singleMessageContainer_L;

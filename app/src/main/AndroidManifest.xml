@@ -26,7 +26,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".Profile"/>
         <activity android:name=".Chatting"
-            android:windowSoftInputMode="adjustUnspecified"/>
+            android:windowSoftInputMode="adjustResize"/>
     </application>
 
 </manifest>

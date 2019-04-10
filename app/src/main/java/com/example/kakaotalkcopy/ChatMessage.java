@@ -1,11 +1,9 @@
 package com.example.kakaotalkcopy;
 
 public class ChatMessage {
-    public boolean left;
     public String message;
 
-    public ChatMessage(boolean left, String message) {
-        this.left = left;
+    public ChatMessage(String message) {
         this.message = message;
     }
 }
