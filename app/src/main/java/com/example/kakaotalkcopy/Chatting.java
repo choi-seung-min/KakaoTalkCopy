@@ -1,26 +1,20 @@
 package com.example.kakaotalkcopy;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -45,30 +39,6 @@ public class Chatting extends AppCompatActivity {
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
         toolbar = findViewById(R.id.toolbar);
-//        ActionBarDrawerToggle  actionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
-//            @Override
-//            public void onDrawerClosed(View drawerView) {
-//                super.onDrawerClosed(drawerView);
-//            }
-//
-//            @Override
-//            public void onDrawerOpened(View drawerView) {
-//                super.onDrawerOpened(drawerView);
-//                InputMethodManager inputMethodManager = (InputMethodManager)
-//                        getSystemService(Context.INPUT_METHOD_SERVICE);
-//                inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-//            }
-//
-//            @Override
-//            public void onDrawerSlide(View drawerView, float slideOffset) {
-//                super.onDrawerSlide(drawerView, slideOffset);
-//                InputMethodManager inputMethodManager = (InputMethodManager)
-//                        getSystemService(Context.INPUT_METHOD_SERVICE);
-//                inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-//            }
-//        };
-//        mDrawerLayout.addDrawerListener(actionBarDrawerToggle);
-//        actionBarDrawerToggle.syncState();
 
         buttonSend = findViewById(R.id.buttonSend1);
 
