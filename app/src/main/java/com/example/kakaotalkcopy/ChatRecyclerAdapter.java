@@ -26,7 +26,7 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.activity_chat_singlemessage_right, viewGroup, false);
             return new RChat(v);
         } else{
-            View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.acctivity_chat_singlemessage_left, viewGroup, false);
+            View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.activity_chat_singlemessage_left, viewGroup, false);
             return new LChat(v);
         }
     }

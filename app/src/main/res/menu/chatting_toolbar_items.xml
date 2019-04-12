@@ -5,6 +5,6 @@
         android:id="@+id/toolbar_next_button"
         android:icon="@drawable/ic_menu"
         app:showAsAction="ifRoom"
-        android:title="" />
+        android:title="menu" />
 
 </menu>

@@ -40,8 +40,12 @@ public class Chatting extends AppCompatActivity {
         init();
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
-        toolbar = findViewById(R.id.toolbar);
 
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        setSupportActionBar(toolbar);
         buttonSend = findViewById(R.id.buttonSend1);
 
         chatText = findViewById(R.id.chatText1);
@@ -62,19 +66,6 @@ public class Chatting extends AppCompatActivity {
 
         recyclerView = this.findViewById(R.id.RecyclerView1);
         recyclerView.setHasFixedSize(true);
-//        adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
-//            @Override
-//            public void onChanged() {
-//                super.onChanged();
-//                recyclerView.getLayoutManager().scrollToPosition(adapter.getItemCount()-1);
-//            }
-//        });
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        setSupportActionBar(toolbar);
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
         mDrawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
@@ -97,7 +88,7 @@ public class Chatting extends AppCompatActivity {
             public void onDrawerStateChanged(int i) {
                 InputMethodManager inputMethodManager = (InputMethodManager)
                         getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                inputMethodManager.hideSoftInputFromWindow(toolbar.getWindowToken(), 0);
             }
         });
 
@@ -156,7 +147,7 @@ public class Chatting extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.toolbar, menu);
+        menuInflater.inflate(R.menu.chatting_toolbar_items, menu);
 
         return true;
     }
@@ -173,8 +164,7 @@ public class Chatting extends AppCompatActivity {
                 return true;
             }
             case R.id.toolbar_next_button: { // 오른쪽 상단 버튼 눌렀을 때
-                mDrawerLayout.openDrawer(GravityCompat.END
-                );
+                mDrawerLayout.openDrawer(GravityCompat.END);
             }
         }
         return super.onOptionsItemSelected(item);

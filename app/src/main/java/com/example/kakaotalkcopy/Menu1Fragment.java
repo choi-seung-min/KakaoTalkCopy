@@ -4,11 +4,19 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,6 +37,26 @@ public class Menu1Fragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         View v = inflater.inflate(R.layout.fragment_menu1, container, false);
+
+//        Toolbar toolbar = this.getActivity().findViewById(R.id.fragment1_toolbar);
+//        MainActivity activity = (MainActivity) getActivity();
+//        activity.setSupportActionBar(toolbar);
+
+        ImageButton search = v.findViewById(R.id.search_button);
+        search.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "search button clicked", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        ImageButton add = v.findViewById(R.id.add_button);
+        add.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "add button clicked", Toast.LENGTH_LONG).show();
+            }
+        });
 
         recyclerInit(v);
         getData();
