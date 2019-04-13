@@ -38,10 +38,6 @@ public class Menu1Fragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         View v = inflater.inflate(R.layout.fragment_menu1, container, false);
 
-//        Toolbar toolbar = this.getActivity().findViewById(R.id.fragment1_toolbar);
-//        MainActivity activity = (MainActivity) getActivity();
-//        activity.setSupportActionBar(toolbar);
-
         ImageButton search = v.findViewById(R.id.search_button);
         search.setOnClickListener(new Button.OnClickListener() {
             @Override

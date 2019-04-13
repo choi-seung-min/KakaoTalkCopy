@@ -4,5 +4,9 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="kakaoBrown">#964B00</color>
+    <color name="kakaoYellow">#fef01b</color>
+    <color name="kakaoSkyBlue">#9bbbd4</color>
+    <color name="kakaoWhite">#ffffff</color>
+    <color name="kakaoGray">#556677</color>
     <color name="black">#000000</color>
 </resources>
