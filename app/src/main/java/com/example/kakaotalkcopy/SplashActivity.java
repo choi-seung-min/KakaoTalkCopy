@@ -5,12 +5,13 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.Bundle;
 
+import io.realm.Realm;
+
 public class SplashActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInsanceState){
         super.onCreate(savedInsanceState);
-
         setContentView(R.layout.activity_splash);
 
         Handler hd = new Handler();

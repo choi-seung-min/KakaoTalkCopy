@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -89,24 +90,40 @@ public class Menu1Fragment extends Fragment {
         friends.name = name;
         friends.content = content;
 
+//        Realm.init(getActivity());
         realm = Realm.getDefaultInstance();
         realm.beginTransaction();
         realm.copyToRealm(friends);
         realm.commitTransaction();
     }
 
+    private List<ChattingFriends> getChattingFriendsList() {
+        List<ChattingFriends> list = new ArrayList<>();
+        Realm realm = null;
+        try {
+//            Realm.init(getActivity());
+            realm = Realm.getDefaultInstance();
+            RealmResults<ChattingFriends> results = realm.where(ChattingFriends.class).findAll();
+            list.addAll(realm.copyFromRealm(results));
+            Log.d("REALM", list.toString());
+        } finally {
+            if (realm != null) {
+                realm.close();
+                Log.d("REALM", "Realm = null");
+            }
+            return list;
+        }
+    }
+
     private void getData() {
-        final RealmResults<ChattingFriends> friends = realm.where(ChattingFriends.class).findAll();
-        List<String> listName = new ArrayList<>();
-        List<String> listContent = new ArrayList<>();
+        List<ChattingFriends> CF = getChattingFriendsList();
 
-
-        for (int i = 0; i < friends.size(); i++) {
+        for (int i = 0; i < CF.size(); i++) {
             // 각 List의 값들을 data 객체에 set 해줍니다.
             Data data = new Data();
-//            data.setTitle(listTitle.get(i));
-//            data.setContent(listContent.get(i));
-//            data.setResId(listResId.get(i));
+            data.setTitle(CF.get(i).name);
+            data.setContent(CF.get(i).content);
+            data.setResId(R.drawable.profile);
 
             // 각 값이 들어간 data를 adapter에 추가합니다.
             adapter.addItem(data);
