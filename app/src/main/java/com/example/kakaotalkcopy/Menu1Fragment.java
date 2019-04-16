@@ -39,7 +39,7 @@ public class Menu1Fragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         View v = inflater.inflate(R.layout.fragment_menu1, container, false);
-
+        recyclerInit(v);
 
         ImageButton search = v.findViewById(R.id.search_button);
         search.setOnClickListener(new Button.OnClickListener() {
@@ -54,7 +54,7 @@ public class Menu1Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                View view = LayoutInflater.from(getContext()).inflate(R.layout.edit_box, null, false);
+                final View view = LayoutInflater.from(getContext()).inflate(R.layout.edit_box, null, false);
                 builder.setView(view);
 
                 final Button ButtonAdd = view.findViewById(R.id.button_add);
@@ -69,9 +69,8 @@ public class Menu1Fragment extends Fragment {
                         String addContent = editTextContent.getText().toString();
                         addFriends(addName, addContent);
                         //refresh need
+                        adapter.notifyDataSetChanged();
                         dialog.dismiss();
-                        adapter.notifyItemInserted(adapter.getItemCount());
-//                        adapter.notifyDataSetChanged();
                     }
                 });
 
@@ -79,15 +78,14 @@ public class Menu1Fragment extends Fragment {
             }
         });
 
-        recyclerInit(v);
         getData();
         return v;
     }
 
     private void recyclerInit(View v){
         RecyclerView recyclerView = v.findViewById(R.id.profileView);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getActivity());
-        recyclerView.setLayoutManager(linearLayoutManager);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this.getActivity());
+        recyclerView.setLayoutManager(layoutManager);
 
         adapter = new Menu1Adapter();
         adapter.addContext(getActivity());
