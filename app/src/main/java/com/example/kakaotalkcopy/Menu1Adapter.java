@@ -39,7 +39,7 @@ public class Menu1Adapter extends RecyclerView.Adapter<Menu1Adapter.ItemViewHold
         holder.Bar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, Profile.class);
+                Intent intent = new Intent(context, Profile.class); // here
                 intent.putExtra("name", name);
                 intent.putExtra("intro", listData.get(position).getContent());
                 context.startActivity(intent);
@@ -60,7 +60,7 @@ public class Menu1Adapter extends RecyclerView.Adapter<Menu1Adapter.ItemViewHold
     }
 
     void addContext(Context context) {
-        this.context = context;
+        this.context = context; // 이게 호출 안댔는데
     }
 
 

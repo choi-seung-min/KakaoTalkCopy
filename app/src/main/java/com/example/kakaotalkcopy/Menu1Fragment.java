@@ -4,29 +4,20 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
@@ -48,8 +39,6 @@ public class Menu1Fragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         View v = inflater.inflate(R.layout.fragment_menu1, container, false);
-        final EditText editName = v.findViewById(R.id.name_input);
-        final EditText editContent = v.findViewById(R.id.content_input);
 
 
         ImageButton search = v.findViewById(R.id.search_button);
@@ -64,9 +53,29 @@ public class Menu1Fragment extends Fragment {
         add.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v) {
-                String addName = editName.getText().toString();
-                String addContent = editContent.getText().toString();
-                addFriends(addName, addContent);
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                View view = LayoutInflater.from(getContext()).inflate(R.layout.edit_box, null, false);
+                builder.setView(view);
+
+                final Button ButtonAdd = view.findViewById(R.id.button_add);
+                final EditText editTextName = view.findViewById(R.id.name_input);
+                final EditText editTextContent = view.findViewById(R.id.content_input);
+
+                final AlertDialog dialog = builder.create();
+                ButtonAdd.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String addName = editTextName.getText().toString();
+                        String addContent = editTextContent.getText().toString();
+                        addFriends(addName, addContent);
+                        //refresh need
+                        dialog.dismiss();
+                        adapter.notifyItemInserted(adapter.getItemCount());
+//                        adapter.notifyDataSetChanged();
+                    }
+                });
+
+                dialog.show();
             }
         });
 
@@ -81,6 +90,7 @@ public class Menu1Fragment extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         adapter = new Menu1Adapter();
+        adapter.addContext(getActivity());
         recyclerView.setAdapter(adapter);
     }
 
@@ -90,7 +100,7 @@ public class Menu1Fragment extends Fragment {
         friends.name = name;
         friends.content = content;
 
-//        Realm.init(getActivity());
+        Realm.init(getActivity());
         realm = Realm.getDefaultInstance();
         realm.beginTransaction();
         realm.copyToRealm(friends);
@@ -101,7 +111,7 @@ public class Menu1Fragment extends Fragment {
         List<ChattingFriends> list = new ArrayList<>();
         Realm realm = null;
         try {
-//            Realm.init(getActivity());
+            Realm.init(getActivity());
             realm = Realm.getDefaultInstance();
             RealmResults<ChattingFriends> results = realm.where(ChattingFriends.class).findAll();
             list.addAll(realm.copyFromRealm(results));
