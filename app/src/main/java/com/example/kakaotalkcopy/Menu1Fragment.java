@@ -69,6 +69,11 @@ public class Menu1Fragment extends Fragment {
                         String addContent = editTextContent.getText().toString();
                         addFriends(addName, addContent);
                         //refresh need
+                        Data data = new Data();
+                        data.setTitle(addName);
+                        data.setContent(addContent);
+                        data.setResId(0);
+                        adapter.addItem(data);
                         adapter.notifyDataSetChanged();
                         dialog.dismiss();
                     }
@@ -97,12 +102,14 @@ public class Menu1Fragment extends Fragment {
         ChattingFriends friends = new ChattingFriends();
         friends.name = name;
         friends.content = content;
+        //data 를 adapter에 추가
 
         Realm.init(getActivity());
         realm = Realm.getDefaultInstance();
         realm.beginTransaction();
         realm.copyToRealm(friends);
         realm.commitTransaction();
+//        adapter.notifyDataSetChanged();
     }
 
     private List<ChattingFriends> getChattingFriendsList() {
