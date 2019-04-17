@@ -33,7 +33,7 @@ public class Menu1Fragment extends Fragment {
     }
 
     private Menu1Adapter adapter;
-    public Realm realm;
+    public Realm friendsRealm;
 
     @Nullable
     @Override
@@ -41,16 +41,16 @@ public class Menu1Fragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_menu1, container, false);
         recyclerInit(v);
 
-        ImageButton search = v.findViewById(R.id.search_button);
-        search.setOnClickListener(new Button.OnClickListener() {
+        ImageButton friendsSearch = v.findViewById(R.id.search_button);
+        friendsSearch.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(), "search button clicked", Toast.LENGTH_LONG).show();
             }
         });
 
-        ImageButton add = v.findViewById(R.id.add_button);
-        add.setOnClickListener(new Button.OnClickListener(){
+        ImageButton friendsAdd = v.findViewById(R.id.add_button);
+        friendsAdd.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -69,12 +69,7 @@ public class Menu1Fragment extends Fragment {
                         String addContent = editTextContent.getText().toString();
                         addFriends(addName, addContent);
                         //refresh need
-                        Data data = new Data();
-                        data.setTitle(addName);
-                        data.setContent(addContent);
-                        data.setResId(0);
-                        adapter.addItem(data);
-                        adapter.notifyDataSetChanged();
+                        setData(addName, addContent, R.drawable.profile);
                         dialog.dismiss();
                     }
                 });
@@ -105,10 +100,10 @@ public class Menu1Fragment extends Fragment {
         //data 를 adapter에 추가
 
         Realm.init(getActivity());
-        realm = Realm.getDefaultInstance();
-        realm.beginTransaction();
-        realm.copyToRealm(friends);
-        realm.commitTransaction();
+        friendsRealm = Realm.getDefaultInstance();
+        friendsRealm.beginTransaction();
+        friendsRealm.copyToRealm(friends);
+        friendsRealm.commitTransaction();
 //        adapter.notifyDataSetChanged();
     }
 
@@ -134,17 +129,17 @@ public class Menu1Fragment extends Fragment {
         List<ChattingFriends> CF = getChattingFriendsList();
 
         for (int i = 0; i < CF.size(); i++) {
-            // 각 List의 값들을 data 객체에 set 해줍니다.
-            Data data = new Data();
-            data.setTitle(CF.get(i).name);
-            data.setContent(CF.get(i).content);
-            data.setResId(R.drawable.profile);
-
-            // 각 값이 들어간 data를 adapter에 추가합니다.
-            adapter.addItem(data);
-            // adapter의 값이 변경되었다는 것을 알려줍니다.
-            adapter.notifyDataSetChanged();
+            setData(CF.get(i).name, CF.get(i).content, R.drawable.profile);
         }
+    }
+
+    public void setData(String name, String content, int resId){
+        Data data = new Data();
+        data.setTitle(name);
+        data.setContent(content);
+        data.setResId(resId);
+        adapter.addItem(data);
+        adapter.notifyDataSetChanged();
     }
 
 }

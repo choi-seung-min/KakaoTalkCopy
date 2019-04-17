@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import java.util.Arrays;
 import java.util.List;
 
+import io.realm.Realm;
+
 public class Menu2Fragment extends Fragment {
 
     private Menu2Adapter adapter;
@@ -24,11 +26,14 @@ public class Menu2Fragment extends Fragment {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
     }
+    
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_menu2, container, false);
+
+
 
         recyclerInit(v);
         getData();
