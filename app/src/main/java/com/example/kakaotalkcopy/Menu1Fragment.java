@@ -21,6 +21,7 @@ import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
+import io.realm.Sort;
 
 public class Menu1Fragment extends Fragment {
 
@@ -41,7 +42,7 @@ public class Menu1Fragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_menu1, container, false);
         recyclerInit(v);
 
-        ImageButton friendsSearch = v.findViewById(R.id.search_button);
+        ImageButton friendsSearch = v.findViewById(R.id.friends_search_button);
         friendsSearch.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,7 +50,7 @@ public class Menu1Fragment extends Fragment {
             }
         });
 
-        ImageButton friendsAdd = v.findViewById(R.id.add_button);
+        ImageButton friendsAdd = v.findViewById(R.id.friends_add_button);
         friendsAdd.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -114,6 +115,7 @@ public class Menu1Fragment extends Fragment {
             Realm.init(getActivity());
             realm = Realm.getDefaultInstance();
             RealmResults<ChattingFriends> results = realm.where(ChattingFriends.class).findAll();
+            results = results.sort("name");
             list.addAll(realm.copyFromRealm(results));
             Log.d("REALM", list.toString());
         } finally {

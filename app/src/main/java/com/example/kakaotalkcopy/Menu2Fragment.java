@@ -9,6 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,14 +29,28 @@ public class Menu2Fragment extends Fragment {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
     }
-    
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_menu2, container, false);
 
+        ImageButton chattingroomSearch = v.findViewById(R.id.chattingroom_search_button);
+        chattingroomSearch.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "search button clicked", Toast.LENGTH_LONG).show();
+            }
+        });
 
+        ImageButton chattingroomAdd = v.findViewById(R.id.chattingroom_add_button);
+        chattingroomAdd.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "add button clicked", Toast.LENGTH_LONG).show();
+            }
+        });
 
         recyclerInit(v);
         getData();

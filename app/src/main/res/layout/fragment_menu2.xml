@@ -23,14 +23,14 @@
                 android:textSize="35dp"/>
 
             <ImageButton
-                android:id="@+id/search_button"
+                android:id="@+id/chattingroom_search_button"
                 android:layout_width="50sp"
                 android:layout_height="50sp"
-                android:layout_toLeftOf="@+id/add_button"
+                android:layout_toLeftOf="@+id/friends_add_button"
                 android:background="@drawable/ic_search_black_24dp"/>
 
             <ImageButton
-                android:id="@+id/add_button"
+                android:id="@+id/chattingroom_add_button"
                 android:layout_width="50sp"
                 android:layout_height="50sp"
                 android:layout_alignParentRight="true"
