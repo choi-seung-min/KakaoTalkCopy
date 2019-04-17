@@ -60,8 +60,16 @@ public class Menu1Adapter extends RecyclerView.Adapter<Menu1Adapter.ItemViewHold
     }
 
     void addContext(Context context) {
-        this.context = context; // 이게 호출 안댔는데
+        this.context = context;
     }
+
+//    void removeAllData(){
+//        final int size = listData.size();
+//
+//        for(int i = 0; i < size - 1; ++i){
+//            listData.remove(size);
+//        }
+//    }
 
 
     // RecyclerView의 핵심인 ViewHolder 입니다.

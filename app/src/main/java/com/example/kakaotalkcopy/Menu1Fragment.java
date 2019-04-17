@@ -21,7 +21,6 @@ import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
-import io.realm.Sort;
 
 public class Menu1Fragment extends Fragment {
 
@@ -71,6 +70,8 @@ public class Menu1Fragment extends Fragment {
                         addFriends(addName, addContent);
                         //refresh need
                         setData(addName, addContent, R.drawable.profile);
+//                        adapter.removeAllData();
+//                        getData();
                         dialog.dismiss();
                     }
                 });
@@ -111,12 +112,15 @@ public class Menu1Fragment extends Fragment {
     private List<ChattingFriends> getChattingFriendsList() {
         List<ChattingFriends> list = new ArrayList<>();
         Realm realm = null;
+
         try {
             Realm.init(getActivity());
             realm = Realm.getDefaultInstance();
+
             RealmResults<ChattingFriends> results = realm.where(ChattingFriends.class).findAll();
             results = results.sort("name");
             list.addAll(realm.copyFromRealm(results));
+
             Log.d("REALM", list.toString());
         } finally {
             if (realm != null) {

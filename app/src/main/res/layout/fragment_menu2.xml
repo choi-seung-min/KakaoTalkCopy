@@ -26,7 +26,7 @@
                 android:id="@+id/chattingroom_search_button"
                 android:layout_width="50sp"
                 android:layout_height="50sp"
-                android:layout_toLeftOf="@+id/friends_add_button"
+                android:layout_toLeftOf="@+id/chattingroom_add_button"
                 android:background="@drawable/ic_search_black_24dp"/>
 
             <ImageButton
