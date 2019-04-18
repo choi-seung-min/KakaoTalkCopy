@@ -69,9 +69,9 @@ public class Menu1Fragment extends Fragment {
                         String addContent = editTextContent.getText().toString();
                         addFriends(addName, addContent);
                         //refresh need
-                        setData(addName, addContent, R.drawable.profile);
-//                        adapter.removeAllData();
-//                        getData();
+//                        setData(addName, addContent, R.drawable.profile);
+                        adapter.removeAllData();
+                        getData();
                         dialog.dismiss();
                     }
                 });

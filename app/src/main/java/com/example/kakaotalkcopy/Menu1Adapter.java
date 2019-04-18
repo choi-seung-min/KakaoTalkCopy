@@ -54,23 +54,23 @@ public class Menu1Adapter extends RecyclerView.Adapter<Menu1Adapter.ItemViewHold
         return listData.size();
     }
 
-    void addItem(Data data) {
+    public void addItem(Data data) {
         // 외부에서 item을 추가시킬 함수입니다.
         listData.add(data);
     }
 
-    void addContext(Context context) {
+    public void addContext(Context context) {
         this.context = context;
     }
 
-//    void removeAllData(){
-//        final int size = listData.size();
-//
-//        for(int i = 0; i < size - 1; ++i){
-//            listData.remove(size);
+    public void removeAllData(){
+//        for(int i = 0; i < listData.size(); ++i){
+//            listData.remove(i);
+//            notifyItemRemoved(i);
 //        }
-//    }
-
+        listData.clear();
+        notifyDataSetChanged();
+    }
 
     // RecyclerView의 핵심인 ViewHolder 입니다.
     // 여기서 subView를 setting 해줍니다.
