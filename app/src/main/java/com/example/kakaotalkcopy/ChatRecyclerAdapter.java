@@ -10,6 +10,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
+import com.example.kakaotalkcopy.ChatMessage;
+import com.example.kakaotalkcopy.R;
+
 import java.util.ArrayList;
 
 public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
