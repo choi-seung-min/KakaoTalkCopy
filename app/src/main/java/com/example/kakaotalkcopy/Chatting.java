@@ -21,7 +21,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-
 public class Chatting extends AppCompatActivity {
     public static ChatRecyclerAdapter adapter;
     private RecyclerView recyclerView;
@@ -168,5 +167,15 @@ public class Chatting extends AppCompatActivity {
             }
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        if(drawer.isDrawerOpen(GravityCompat.END)){
+            drawer.closeDrawer(GravityCompat.END);
+        }else{
+            super.onBackPressed();
+        }
     }
 }
