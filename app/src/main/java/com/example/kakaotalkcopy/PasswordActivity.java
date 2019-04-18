@@ -66,6 +66,7 @@ public class PasswordActivity extends AppCompatActivity {
         if(password.toString().equals("1234")){
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
+            finish();
         }
     }
 }
