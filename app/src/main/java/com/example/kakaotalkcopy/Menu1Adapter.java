@@ -64,10 +64,6 @@ public class Menu1Adapter extends RecyclerView.Adapter<Menu1Adapter.ItemViewHold
     }
 
     public void removeAllData(){
-//        for(int i = 0; i < listData.size(); ++i){
-//            listData.remove(i);
-//            notifyItemRemoved(i);
-//        }
         listData.clear();
         notifyDataSetChanged();
     }
@@ -84,10 +80,10 @@ public class Menu1Adapter extends RecyclerView.Adapter<Menu1Adapter.ItemViewHold
         ItemViewHolder(View itemView) {
             super(itemView);
 
-            textView1 = itemView.findViewById(R.id.textView1);
-            textView2 = itemView.findViewById(R.id.textView2);
-            imageView = itemView.findViewById(R.id.imageView);
-            Bar = itemView.findViewById(R.id.profileBar);
+            textView1 = itemView.findViewById(R.id.menu2_textView1);
+            textView2 = itemView.findViewById(R.id.menu2_textView2);
+            imageView = itemView.findViewById(R.id.menu2_imageView);
+            Bar = itemView.findViewById(R.id.menu2_profileBar);
         }
 
         void onBind(Data data) {

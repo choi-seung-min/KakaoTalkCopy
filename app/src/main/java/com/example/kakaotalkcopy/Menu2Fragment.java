@@ -21,6 +21,7 @@ import io.realm.Realm;
 public class Menu2Fragment extends Fragment {
 
     private Menu2Adapter adapter;
+    public Realm chattingRealm;
 
     public Menu2Fragment(){
 

@@ -72,13 +72,13 @@ public class Menu2Adapter extends RecyclerView.Adapter<Menu2Adapter.ItemViewHold
         private ImageView imageView;
         private LinearLayout Bar;
 
-        ItemViewHolder(View itemView) {
+        public ItemViewHolder(View itemView) {
             super(itemView);
 
-            textView1 = itemView.findViewById(R.id.textView1);
-            textView2 = itemView.findViewById(R.id.textView2);
-            imageView = itemView.findViewById(R.id.imageView);
-            Bar = itemView.findViewById(R.id.profileBar);
+            textView1 = itemView.findViewById(R.id.menu2_textView1);
+            textView2 = itemView.findViewById(R.id.menu2_textView2);
+            imageView = itemView.findViewById(R.id.menu2_imageView);
+            Bar = itemView.findViewById(R.id.menu2_profileBar);
         }
 
         void onBind(Data data) {

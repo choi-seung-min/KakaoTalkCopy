@@ -68,8 +68,7 @@ public class Menu1Fragment extends Fragment {
                         String addName = editTextName.getText().toString();
                         String addContent = editTextContent.getText().toString();
                         addFriends(addName, addContent);
-                        //refresh need
-//                        setData(addName, addContent, R.drawable.profile);
+
                         adapter.removeAllData();
                         getData();
                         dialog.dismiss();
@@ -95,7 +94,6 @@ public class Menu1Fragment extends Fragment {
     }
 
     private  void addFriends(String name, String content){
-//        List<ChattingFriends> friends = new ArrayList<ChattingFriends>();
         ChattingFriends friends = new ChattingFriends();
         friends.name = name;
         friends.content = content;
@@ -106,7 +104,6 @@ public class Menu1Fragment extends Fragment {
         friendsRealm.beginTransaction();
         friendsRealm.copyToRealm(friends);
         friendsRealm.commitTransaction();
-//        adapter.notifyDataSetChanged();
     }
 
     private List<ChattingFriends> getChattingFriendsList() {
