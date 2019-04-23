@@ -1,5 +1,7 @@
 package com.example.kakaotalkcopy;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -34,7 +36,7 @@ public class Menu2Fragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_menu2, container, false);
 
         ImageButton chattingroomSearch = v.findViewById(R.id.chattingroom_search_button);
@@ -49,7 +51,8 @@ public class Menu2Fragment extends Fragment {
         chattingroomAdd.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "add button clicked", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getContext(), ChattingAdd.class);
+                startActivity(intent);
             }
         });
 
