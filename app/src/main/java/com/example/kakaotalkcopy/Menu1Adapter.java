@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class Menu1Adapter extends RecyclerView.Adapter<Menu1Adapter.ItemViewHolder> {
 
     // adapter에 들어갈 list 입니다.
-    public ArrayList<Data> listData = new ArrayList<>();
+    public ArrayList<ChattingFriends> listData = new ArrayList<>();
     private Context context;
 
     @NonNull
@@ -32,7 +32,7 @@ public class Menu1Adapter extends RecyclerView.Adapter<Menu1Adapter.ItemViewHold
     public void onBindViewHolder(@NonNull final ItemViewHolder holder, final int position) {
         // Item을 하나, 하나 보여주는(bind 되는) 함수입니다.
 
-        final String name = listData.get(position).getTitle();
+        final String name = listData.get(position).getName();
 
         holder.textView1.setText(name);
 
@@ -54,9 +54,9 @@ public class Menu1Adapter extends RecyclerView.Adapter<Menu1Adapter.ItemViewHold
         return listData.size();
     }
 
-    public void addItem(Data data) {
+    public void addItem(ChattingFriends chattingFriends) {
         // 외부에서 item을 추가시킬 함수입니다.
-        listData.add(data);
+        listData.add(chattingFriends);
     }
 
     public void addContext(Context context) {
@@ -80,16 +80,16 @@ public class Menu1Adapter extends RecyclerView.Adapter<Menu1Adapter.ItemViewHold
         ItemViewHolder(View itemView) {
             super(itemView);
 
-            textView1 = itemView.findViewById(R.id.menu2_textView1);
-            textView2 = itemView.findViewById(R.id.menu2_textView2);
-            imageView = itemView.findViewById(R.id.menu2_imageView);
-            Bar = itemView.findViewById(R.id.menu2_profileBar);
+            textView1 = itemView.findViewById(R.id.menu1_textView1);
+            textView2 = itemView.findViewById(R.id.menu1_textView2);
+            imageView = itemView.findViewById(R.id.menu1_imageView);
+            Bar = itemView.findViewById(R.id.menu1_profileBar);
         }
 
-        void onBind(Data data) {
-            textView1.setText(data.getTitle());
-            textView2.setText(data.getContent());
-            imageView.setImageResource(data.getResId());
+        void onBind(ChattingFriends chattingFriends) {
+            textView1.setText(chattingFriends.getName());
+            textView2.setText(chattingFriends.getContent());
+            imageView.setImageResource(chattingFriends.getResId());
         }
     }
 }

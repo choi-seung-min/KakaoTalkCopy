@@ -97,7 +97,6 @@ public class Menu1Fragment extends Fragment {
         ChattingFriends friends = new ChattingFriends();
         friends.name = name;
         friends.content = content;
-        //data 를 adapter에 추가
 
         Realm.init(getActivity());
         friendsRealm = Realm.getDefaultInstance();
@@ -137,8 +136,8 @@ public class Menu1Fragment extends Fragment {
     }
 
     public void setData(String name, String content, int resId){
-        Data data = new Data();
-        data.setTitle(name);
+        ChattingFriends data = new ChattingFriends();
+        data.setName(name);
         data.setContent(content);
         data.setResId(resId);
         adapter.addItem(data);

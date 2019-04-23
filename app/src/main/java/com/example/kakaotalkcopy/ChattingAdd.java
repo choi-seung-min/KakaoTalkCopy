@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +18,7 @@ import io.realm.RealmResults;
 public class ChattingAdd extends AppCompatActivity {
 
     private ChattingAddAdapter adapter;
+    private Menu2Fragment menu2Fragment = new Menu2Fragment();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -26,6 +30,20 @@ public class ChattingAdd extends AppCompatActivity {
 
         adapter = new ChattingAddAdapter();
         recyclerView.setAdapter(adapter);
+
+        Button addButton = findViewById(R.id.button_add);
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(adapter.checkedData.size() >= 2){
+                    Toast.makeText(getApplicationContext(), "not support multi chatting yet",Toast.LENGTH_LONG).show();
+                    finish();
+                }else{
+                    //TODO add new chatting room
+                    menu2Fragment.addChattingRoom(adapter.checkedData.get(0));
+                }
+            }
+        });
 
         getData();
     }
@@ -61,11 +79,11 @@ public class ChattingAdd extends AppCompatActivity {
     }
 
     public void setData(String name, String content, int resId){
-        Data data = new Data();
-        data.setTitle(name);
-        data.setContent(content);
-        data.setResId(resId);
-        adapter.addItem(data);
+        ChattingFriends chattingFriends = new ChattingFriends();
+        chattingFriends.setName(name);
+        chattingFriends.setContent(content);
+        chattingFriends.setResId(resId);
+        adapter.addItem(chattingFriends);
         adapter.notifyDataSetChanged();
     }
 }

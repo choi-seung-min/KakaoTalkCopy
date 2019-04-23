@@ -25,8 +25,8 @@ public class SplashActivity extends Activity {
         }
     }
 
-    @Override
-    public void onBackPressed(){
-
-    }
+//    @Override
+//    public void onBackPressed(){
+//
+//    }
 }

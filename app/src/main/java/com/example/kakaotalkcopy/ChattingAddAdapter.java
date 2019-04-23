@@ -14,7 +14,9 @@ import java.util.ArrayList;
 
 public class ChattingAddAdapter extends RecyclerView.Adapter<ChattingAddAdapter.ItemViewHolder> {
 
-    public ArrayList<Data> listData = new ArrayList<>();
+    public ArrayList<ChattingFriends> listData = new ArrayList<>();
+    public ArrayList<ChattingFriends> checkedData = new ArrayList<>();
+
 
     @NonNull
     @Override
@@ -24,17 +26,19 @@ public class ChattingAddAdapter extends RecyclerView.Adapter<ChattingAddAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ChattingAddAdapter.ItemViewHolder itemViewHolder, int i) {
+    public void onBindViewHolder(@NonNull final ChattingAddAdapter.ItemViewHolder itemViewHolder, final int i) {
 
-        final String name = listData.get(i).getTitle();
+        final String name = listData.get(i).getName();
         itemViewHolder.textView1.setText(name);
         itemViewHolder.Bar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(itemViewHolder.checkBox.isChecked()){
                     itemViewHolder.checkBox.setChecked(false);
+                    checkedData.remove(i);
                 }else {
                     itemViewHolder.checkBox.setChecked(true);
+                    checkedData.add(listData.get(i));
                 }
             }
         });
@@ -47,8 +51,8 @@ public class ChattingAddAdapter extends RecyclerView.Adapter<ChattingAddAdapter.
         return listData.size();
     }
 
-    public void addItem(Data data){
-        listData.add(data);
+    public void addItem(ChattingFriends chattingFriends){
+        listData.add(chattingFriends);
     }
 
     class ItemViewHolder extends RecyclerView.ViewHolder{
@@ -68,10 +72,10 @@ public class ChattingAddAdapter extends RecyclerView.Adapter<ChattingAddAdapter.
             checkBox = itemView.findViewById(R.id.checkbox);
         }
 
-        void onBind(Data data){
-            textView1.setText(data.getTitle());
-            textView2.setText(data.getContent());
-            imageView.setImageResource(data.getResId());
+        void onBind(ChattingFriends chattingFriends){
+            textView1.setText(chattingFriends.getName());
+            textView2.setText(chattingFriends.getContent());
+            imageView.setImageResource(chattingFriends.getResId());
         }
     }
 }
