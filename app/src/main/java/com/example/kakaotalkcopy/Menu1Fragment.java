@@ -24,6 +24,9 @@ import io.realm.RealmResults;
 
 public class Menu1Fragment extends Fragment {
 
+    private Menu1Adapter adapter;
+    public Realm friendsRealm;
+
     public Menu1Fragment(){
 
     }
@@ -32,8 +35,6 @@ public class Menu1Fragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    private Menu1Adapter adapter;
-    public Realm friendsRealm;
 
     @Nullable
     @Override

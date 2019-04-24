@@ -19,6 +19,7 @@ public class ChattingAdd extends AppCompatActivity {
 
     private ChattingAddAdapter adapter;
     private Menu2Fragment menu2Fragment = new Menu2Fragment();
+    private Menu2Adapter menu2Adapter = new Menu2Adapter();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,10 @@ public class ChattingAdd extends AppCompatActivity {
                 }else{
                     //TODO add new chatting room
                     menu2Fragment.addChattingRoom(adapter.checkedData.get(0));
+                    menu2Adapter.removeAllData();
+                    menu2Fragment.getData();
+//                    adapter.removeAllData();
+//                    getData();
                 }
             }
         });

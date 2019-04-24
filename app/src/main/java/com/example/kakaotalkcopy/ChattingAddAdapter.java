@@ -55,6 +55,11 @@ public class ChattingAddAdapter extends RecyclerView.Adapter<ChattingAddAdapter.
         listData.add(chattingFriends);
     }
 
+    public void removeAllData(){
+        listData.clear();
+        notifyDataSetChanged();
+    }
+
     class ItemViewHolder extends RecyclerView.ViewHolder{
         private TextView textView1;
         private TextView textView2;

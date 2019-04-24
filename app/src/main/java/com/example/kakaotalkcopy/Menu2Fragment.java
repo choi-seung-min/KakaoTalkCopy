@@ -73,6 +73,7 @@ public class Menu2Fragment extends Fragment {
     }
 
     public  void addChattingRoom(ChattingFriends chattingFriends){
+        chattingFriends.setRoomExist(true);
 //        ChattingFriends room = new ChattingFriends();
 //        room.name = chattingFriends.getName();
 //        room.content = chattingFriends.getContent();
@@ -81,9 +82,8 @@ public class Menu2Fragment extends Fragment {
 //        Realm.init(getActivity());
 //        chattingRealm = Realm.getDefaultInstance();
 //        chattingRealm.beginTransaction();
-//        chattingRealm.copyToRealm(room);
+//        chattingRealm.copyToRealm(chattingFriends);
 //        chattingRealm.commitTransaction();
-        chattingFriends.setRoomExist(true);
     }
 
     private List<ChattingFriends> getChattingRoomList() {
@@ -94,7 +94,7 @@ public class Menu2Fragment extends Fragment {
             Realm.init(getActivity());
             realm = Realm.getDefaultInstance();
 
-            RealmResults<ChattingFriends> results = realm.where(ChattingFriends.class).equalTo("roomExist", false).findAll();
+            RealmResults<ChattingFriends> results = realm.where(ChattingFriends.class).equalTo("roomExist", true).findAll();
             results = results.sort("name");
             list.addAll(realm.copyFromRealm(results));
 
@@ -108,7 +108,7 @@ public class Menu2Fragment extends Fragment {
         }
     }
 
-    private void getData() {
+    public void getData() {
         List<ChattingFriends> CFR = getChattingRoomList();
 
         for (int i = 0; i < CFR.size(); i++) {
@@ -122,6 +122,7 @@ public class Menu2Fragment extends Fragment {
         chattingFriends.setContent(content);
         chattingFriends.setResId(resId);
         adapter.addItem(chattingFriends);
+        //TODO error, null pointer exception
         adapter.notifyDataSetChanged();
     }
 

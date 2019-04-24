@@ -53,13 +53,18 @@ public class Menu2Adapter extends RecyclerView.Adapter<Menu2Adapter.ItemViewHold
         return listData.size();
     }
 
-    void addItem(ChattingFriends chattingFriends) {
+    public void addItem(ChattingFriends chattingFriends) {
         // 외부에서 item을 추가시킬 함수입니다.
         listData.add(chattingFriends);
     }
 
-    void addContext(Context context) {
+    public void addContext(Context context) {
         this.context = context;
+    }
+
+    public void removeAllData(){
+        listData.clear();
+        notifyDataSetChanged();
     }
 
 
